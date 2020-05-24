@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blogging Website</title>
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet"> 
+	<!-- M Icons -->
+	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	 <!-- Acutal M -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	 <!-- Icons -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <!-- custom css -->
+	 <link rel="stylesheet" href="{% static 'assets/css/style1.css' %}">
+</head>
+<body>
+<!-- NavBar -->
+<section class="fnavbar">
+	 <nav class="nav-fixed">
+   		 <div class="nav-wrapper">
+     		 <a href="#" class="brand-logo" style="margin-left: 50px">Blogging Website</a>
+     		 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      		<ul id="nav-mobile" class="right hide-on-med-and-down">
+       			<li><a href="{% url 'posts-home' %}"><i class="material-icons left">home</i>Home</a></li>
+        		<li><a href="#"><i class="material-icons left">burst_mode</i>Manage</a></li>
+       			<li><a href="#"><i class="material-icons left">dvr</i>Read block</a></li>
+       			<li><a href="#"><i class="material-icons left">person</i>Profile</a></li>
+       			<li><a href="{% url 'users:log-out' %}"><i class="material-icons left">keyboard_return</i>Logout</a></li>
+      		</ul>
+   		  </div>
+
+      </nav>
+
+  	  <ul class="sidenav" id="mobile-demo">
+    	        <li><a href="{% url 'posts-home' %}"><i class="material-icons left">home</i>Home</a></li>
+        		<li><a href="#"><i class="material-icons left">burst_mode</i>Manage</a></li>
+       			<li><a href="#"><i class="material-icons left">dvr</i>Read block</a></li>
+       			<li><a href="#"><i class="material-icons left">person</i>Profile</a></li>
+       			<li><a href="#"><i class="material-icons left">keyboard_return</i>Logout</a></li>
+      </ul>
+</section>
+
+<!-- Slider -->
+<section class="fslider">
+	<div class="slider" style="background: #ffd180;">
+		<ul class="slides">
+			<li>
+				<img src="{% static 'assets/images/bl1.jpg' %}" alt="image one">
+			</li>
+			<li>
+				<img src="{% static 'assets/images/bl5.jpg' %}" alt="image one">
+			</li>
+			<li>
+				<img src="{% static 'assets/images/bl6.jpg' %}" alt="image one">
+			</li>
+			<li>
+				<img src="{% static 'assets/images/bl7.jpg' %}" alt="image one">
+			</li>
+		</ul>
+	</div>
+</section>    
+    
+
+<!-- Cards -->
+<section class="fcard" style="background: #ffd180;">
+
+<div class="row" style="padding-left: 50px; padding-right: 50px">
+    {% for post in posts %}
+    <div class="col s12 m12 l4" style="padding: 50px 50px;">
+         <div class="card" style="background: #ffd180;">
+                <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator" src="{{ post.image.url }}">
+              </div>
+                 <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">{{ post.title }}</span>
+              </div>
+               <div class="row center" style="padding-left: 10px; padding-right: 10px">
+                    <div class="col s12 l4" style="padding: 5px 5px;"><a href="{% url 'post-detail' slug=post.slug %}" class="waves-effect waves-light btn btn-small" style="background: #e65100 !important;"><i class="tiny material-icons left">remove_red_eye</i>view</a></div>
+                    <div class="col s12 l4" style="padding: 5px 5px;"><a href="{% url 'edit-post' slug=post.slug %}" class="waves-effect waves-light btn btn-small" style="background: #e65100 !important;"><i class="tiny material-icons left">edit</i>edit</a></div>
+                    <div class="col s12 l4" style="padding: 5px 5px;"><a href="{% url 'delete-post' slug=post.slug %}" class="waves-effect waves-light btn btn-small" style="background: #e65100 !important;"><i class="tiny material-icons left">delete</i>delete</a></div>
+               </div>
+         </div>
+    </div>
+    {% endfor %}
+</div>
+	
+</section>
+
+
+
+
+<!-- parallex -->
+<section class="fparallex">
+	<div class="parallax-container" >
+      <div class="parallax" style="background: #ffd180;"><img src="{% static 'assets/images/px.jpg' %}"></div>
+    </div>
+</section>
+
+<!-- AboutUs -->
+<section class="fabout">
+	<div class="section center" style="background: #ffd180;" >
+		<div class="row container">
+		  <h2 class="header">About Us</h2>
+		  <p class="grey-text text-darken-3">
+		   "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains." </p>
+		   <a href="#" class="btn waves-effect waves-light" style="background: #e65100 !important;">Read More</a>
+	    </div>
+	</div>
+</section>
+
+
+
+
+<!-- footer -->
+<section class="ffooter">
+	<footer class="footer-one">
+		<div class="container">
+			<div class ="row center">
+
+
+				
+				<div class="col s12 l6">
+					<div class="container white-text">
+
+					<div class ="row">
+							<h4>Contact Us</h4>
+					</div>
+
+					<div class ="row">
+
+						<section class="fcontact">
+	                         <div class="row" style="padding-right: 10px padding-left:10px">
+		                        <div class="col s12 l4 center" style="padding:10px">
+			                        <i class="fa fa-address-card small"></i>
+			                        <h6 class="header">Shanti Nagar Delhi- 441502 </h6>
+		                        </div>
+		                        <div class="col s12 l4 center" style="padding: 10px">
+			                        <i class="fa fa-phone-square small"></i>
+		                   	        <h6 class="header">+918788303454</h6>
+							    </div>
+						 
+				             </div>
+				         </section>
+				    </div>    
+				    </div>
+				    </div>
+
+				<div class="col s12 l6">
+					<div class="container white-text">
+
+					<div class ="row">
+							<h4>Social Media</h4>
+					</div>
+
+					<div class ="row">
+
+						<section class="fmedia">
+	                         <div class="row" style="padding-right: 10px padding-left:10px">
+		                        <div class="col s12 l4 center" style="padding: 10px">
+			                        <!-- <i class="small material-icons">facebook-square</i> -->
+			                        <i class="fa fa-facebook-square small"></i>
+			                        <h6 class="header">Facebook</h6>
+		                        </div>
+		                        <div class="col s12 l4 center" style="padding: 10px">
+			                        <i class="fa fa-instagram small"></i>
+		                   	        <h6 class="header">Instagram</h6>
+							    </div>
+						    	<div class="col s12 l4 center" style="padding: 10px">
+								    <i class="fa fa-twitter-square small"></i>
+								    <h6 class="header">Twitter</h6>
+							    </div>
+				             </div>
+				         </section>
+				    </div>    
+				    </div>
+				    </div>
+
+
+
+			</div>
+	    </div>
+
+
+				
+
+					
+		
+		<div class="row footer-two">
+			<div class="col s12 l6 center">
+				<p class="white-text">&copy; Blogging Website</p>
+			</div>
+			<div class="col s12 l6 center">
+				<p class="white-text">Designed by Web Dev Team</p>
+			</div>
+		</div>
+
+	</footer>
+</section>
+
+
+</body>
+
+<!-- JQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+<!-- M Script -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+ <!-- custom js -->
+ <script src="{% static 'assets/js/loader.js' %}"></script>
+
+</html>

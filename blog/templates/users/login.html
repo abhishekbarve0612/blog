@@ -1,0 +1,66 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html>
+
+<head>
+ 	<title>Login From</title>
+ 	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/userstyle.css'%}">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+
+
+<body>
+
+<header class="site-header">
+
+	 <nav>
+  			<div class="logo">
+   				<h1>Blogging Website</h1>
+  			</div>
+
+  			<div class="menu"> 
+   				<ul>
+    				<li><a href="{% url 'posts-home' %}">Home</a></li>
+    				<li><a href="">About Us</a></li>
+    				<li><a href="">Contact Us</a></li>
+    				<li><a href="{% url 'post-list' %}">Read Blogs</a></li>
+    				<li><a href="{% url 'users:register' %}">Register</a></li>
+  				</ul>
+  			</div>
+ 	 </nav>
+
+	 <section>
+
+  		<div class="leftside"> 
+  			 <img src="{% static 'assets/images/intro.jpg'%}">
+  		</div>
+
+        <div class="rightside"> 
+        	<div class="form-box">
+           			 <h1>Login Here</h1>
+
+           			 <div class="social-icons">
+						<a href="{% provider_login_url 'facebook' %}"> <img src="{% static 'assets/images/fb.png'%}"> </a>
+						<a href="{% provider_login_url 'github' %}">  <img src="{% static 'assets/images/github-logo.png'%}"> </a>
+						 <a href="{% provider_login_url 'google' %}">  <img src="{% static 'assets/images/goo.png'%}"> </a>
+					 </div>
+
+           			 <form class="input-group" method="POST" action="{% url 'users:user_login' %}" id="login"> {% csrf_token %}
+           			 	<input type="text" name="username" class="input-field" placeholder="Username" required>
+           			 	<input type="password" name="password" class="input-field" placeholder="Enter Password" required>
+           			 	<input type="checkbox" class="check-box" value="fp"><label for="fp">Forgot Password</label>
+           			 	<button type="submit" class="submit-btn">Login</button>
+           			 </form>
+            		
+            </div>
+        </div>
+  
+     </section>
+
+</header>
+
+
+</body>
+</html>
